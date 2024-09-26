@@ -28,11 +28,38 @@ builder.Services.AddCors(options =>
         });
 });
 
+
+//----------------------------ADD-----SCOPE--------------------------------------------
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+
+
 //Add Repo
 builder.Services.AddScoped<ICandleRepo, CandleRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+
 
 //Add Service
 builder.Services.AddScoped<ICandleService, CandleService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//                                                                                    |
+//----------------------------ADD-----SCOPE--------------------------------------------
+
+
 builder.Services.AddDbContext<CandleContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Candle"));

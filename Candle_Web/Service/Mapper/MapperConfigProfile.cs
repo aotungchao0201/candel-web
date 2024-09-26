@@ -14,6 +14,7 @@ namespace Service.Mapper
         public MapperConfigProfile() 
         {
             CreateMap<CandleDTO, Candle>().ReverseMap();
+            CreateMap<UserDTO, User>().ReverseMap();
 
         }
     }
