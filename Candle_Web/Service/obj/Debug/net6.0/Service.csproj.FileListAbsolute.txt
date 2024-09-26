@@ -1,0 +1,36 @@
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.deps.json
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.dll
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.pdb
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Model.dll
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Repo.dll
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Repo.pdb
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\bin\Debug\net6.0\Model.pdb
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.sourcelink.json
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.dll
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\refint\Service.dll
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.pdb
+D:\FPT\HK8\EXE_201\Candle Web week 2\candel-web\Candle_Web\Service\obj\Debug\net6.0\ref\Service.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.deps.json
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Service.pdb
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Model.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Repo.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Repo.pdb
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\bin\Debug\net6.0\Model.pdb
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.sourcelink.json
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\refint\Service.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\Service.pdb
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Service\obj\Debug\net6.0\ref\Service.dll

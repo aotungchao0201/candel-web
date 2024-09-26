@@ -3282,18 +3282,18 @@
     },
     "Model/1.0.0": {
       "type": "project",
-      "path": "../../../../Candle Web week 2/candel-web/Candle_Web/Model/Model.csproj",
-      "msbuildProject": "../../../../Candle Web week 2/candel-web/Candle_Web/Model/Model.csproj"
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     },
     "Repo/1.0.0": {
       "type": "project",
-      "path": "../../../../Candle Web week 2/candel-web/Candle_Web/Repo/Repo.csproj",
-      "msbuildProject": "../../../../Candle Web week 2/candel-web/Candle_Web/Repo/Repo.csproj"
+      "path": "../Repo/Repo.csproj",
+      "msbuildProject": "../Repo/Repo.csproj"
     },
     "Service/1.0.0": {
       "type": "project",
-      "path": "../../../../Candle Web week 2/candel-web/Candle_Web/Service/Service.csproj",
-      "msbuildProject": "../../../../Candle Web week 2/candel-web/Candle_Web/Service/Service.csproj"
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3331,6 +3331,9 @@
           "projectReferences": {
             "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj": {
               "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj"
+            },
+            "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj": {
+              "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj"
             }
           }
         }
