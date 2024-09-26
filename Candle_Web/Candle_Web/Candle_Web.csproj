@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Candle Web week 2\candel-web\Candle_Web\Service\Service.csproj" />
+  </ItemGroup>
+
 </Project>

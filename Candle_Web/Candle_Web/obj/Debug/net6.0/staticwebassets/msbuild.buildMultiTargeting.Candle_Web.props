@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Candle_Web.props" />
+</Project>

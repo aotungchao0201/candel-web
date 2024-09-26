@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Candle_Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f14e32046050ee0f27dabe3c20caf4972686427")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cba13269975b689afbc663b977edc242c5605ca7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Candle_Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Candle_Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
