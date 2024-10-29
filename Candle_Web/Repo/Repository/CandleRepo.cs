@@ -12,9 +12,9 @@ namespace Repo.Repository
 {
     public class CandleRepo : ICandleRepo
     {
-        private readonly CandleContext _context;
+        private readonly candleContext _context;
 
-        public CandleRepo(CandleContext context)
+        public CandleRepo(candleContext context)
         {
             _context = context;
         }
@@ -35,7 +35,9 @@ namespace Repo.Repository
 
         public async Task<List<Candle>> GetAllCandle()
         {
-            var data = await _context.Candles.ToListAsync();
+            var data = await _context.Candles.
+                Include(o=>o.Category).ToListAsync();
+            
             return data;
         }
 

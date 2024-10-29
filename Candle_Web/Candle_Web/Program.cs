@@ -1,3 +1,4 @@
+using Candle_Web;
 using Microsoft.EntityFrameworkCore;
 using Model.Models;
 using Repo.Repository;
@@ -5,6 +6,9 @@ using Repo.Repository.Interface;
 using Service.Mapper;
 using Service.Services;
 using Service.Services.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//add cloudiary
+builder.Services.AddCloudinary();
+
 //Add Mapper
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
@@ -26,6 +34,27 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
+});
+
+//add JWT
+builder.Services.AddSingleton<TokenService>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
 });
 
 
@@ -42,11 +71,21 @@ builder.Services.AddCors(options =>
 //Add Repo
 builder.Services.AddScoped<ICandleRepo, CandleRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IReViewRepo, ReviewRepo>();
+builder.Services.AddScoped<IOrderRepo, OrderRepo>();
+
+
 
 
 //Add Service
 builder.Services.AddScoped<ICandleService, CandleService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IAuthenService, AuthenService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+
+
 
 
 //                                                                                    |
@@ -60,11 +99,17 @@ builder.Services.AddScoped<IUserService, UserService>();
 //----------------------------ADD-----SCOPE--------------------------------------------
 
 
-builder.Services.AddDbContext<CandleContext>(options =>
+builder.Services.AddDbContext<candleContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Candle"));
 });
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ManagerPolicy", policy =>
+        policy.RequireClaim("Role", "Manager"));
+    options.AddPolicy("CustomerPolicy", policy =>
+        policy.RequireClaim("Role", "Customer"));
+});
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

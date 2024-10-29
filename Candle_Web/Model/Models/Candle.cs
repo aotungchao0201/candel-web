@@ -7,9 +7,9 @@ namespace Model.Models
     {
         public Candle()
         {
+            CandlesImgs = new HashSet<CandlesImg>();
             OrderItems = new HashSet<OrderItem>();
             Reviews = new HashSet<Review>();
-            Categories = new HashSet<Category>();
         }
 
         public int CandleId { get; set; }
@@ -19,10 +19,12 @@ namespace Model.Models
         public int? StockQuantity { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public int? CategoryId { get; set; }
+        public string? ImgUrl { get; set; }
 
+        public virtual Category? Category { get; set; }
+        public virtual ICollection<CandlesImg> CandlesImgs { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
-
-        public virtual ICollection<Category> Categories { get; set; }
     }
 }

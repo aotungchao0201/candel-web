@@ -14,5 +14,7 @@ namespace Service.Modals
         public int? StockQuantity { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public string NameCategory { get; set; } = null!;
+        public string? ImgUrl { get; set; }
     }
 }

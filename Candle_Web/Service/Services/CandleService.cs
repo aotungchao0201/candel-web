@@ -2,6 +2,7 @@
 using Model.Models;
 using Repo.Repository.Interface;
 using Service.Modals;
+using Service.Modals.Request;
 using Service.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,13 @@ namespace Service.Services
             _mapper = mapper;
         }
 
-        public async Task<CandleDTO> createCandle(CandleDTO candleDTO)
+        public async Task<CandleRequest> createCandle(CandleRequest candleDTO)
         {
             try
             {
                 var map = _mapper.Map<Candle>(candleDTO);
                 var createCandle = await _candleRepo.CreateCandle(map);
-                var resutl = _mapper.Map<CandleDTO>(createCandle);
+                var resutl = _mapper.Map<CandleRequest>(createCandle);
                 return resutl;
             }
             catch (Exception ex)
@@ -67,7 +68,14 @@ namespace Service.Services
             {
 
                 var data = await _candleRepo.GetAllCandle();
+
+                if (!data.Any())
+                {
+                    return null;
+                }
+
                 var map = _mapper.Map<List<CandleDTO>>(data);
+
                 return map;
 
             }
@@ -77,7 +85,7 @@ namespace Service.Services
             }
         }
 
-        public async Task<bool> updateCandle(int id, CandleDTO dto)
+        public async Task<bool> updateCandle(int id, CandleRequest dto)
         {
             try
             {

@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Modals;
+using Service.Modals.Request;
 using Service.Services.Interface;
+using System.Net;
 
 namespace Candle_Web.Controllers
 {
@@ -10,15 +14,18 @@ namespace Candle_Web.Controllers
     [ApiController]
     public class CandleController : ControllerBase
     {
+        private readonly Cloudinary _cloudinary;
+
         private readonly ICandleService _candleService;
 
-        public CandleController(ICandleService candleService)
+        public CandleController(Cloudinary cloudinary, ICandleService candleService)
         {
+            _cloudinary = cloudinary;
             _candleService = candleService;
         }
 
-        [HttpPut("update")]
-        public async Task<IActionResult> UpdateCandle(int id, CandleDTO candle)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCandle(int id, [FromForm] CandleRequest candle)
         {
             try
             {
@@ -27,30 +34,76 @@ namespace Candle_Web.Controllers
                     return BadRequest(ModelState);
                 }
 
+                // Xử lý tải lên ảnh
+                if (candle.ImgFile != null && candle.ImgFile.Length > 0)
+                {
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(candle.ImgFile.FileName, candle.ImgFile.OpenReadStream()),
+                        UseFilename = true,
+                        UniqueFilename = true,
+                        Overwrite = true
+                    };
+
+                    var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+                    if (uploadResult.StatusCode != HttpStatusCode.OK)
+                    {
+                        return BadRequest("Image upload failed.");
+                    }
+
+                    // Lưu đường dẫn hình ảnh vào ImgUrl
+                    candle.ImgUrl = uploadResult.SecureUrl.ToString();
+                }
+
+                // Gọi service để cập nhật candle
                 bool isUpdated = await _candleService.updateCandle(id, candle);
 
                 if (isUpdated)
                 {
-                    // Return a success response
                     return Ok();
                 }
                 else
                 {
-                    // Return a not found response if the service was not updated successfully
                     return NotFound();
                 }
             }
             catch (Exception ex)
             {
-                // Return a bad request response for any other exceptions
-                return BadRequest();
+                return BadRequest($"An error occurred: {ex.Message}");
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateRoute(CandleDTO candle)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateCandle([FromForm] CandleRequest candle)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                // Xử lý tải lên ảnh
+                if (candle.ImgFile != null && candle.ImgFile.Length > 0)
+                {
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(candle.ImgFile.FileName, candle.ImgFile.OpenReadStream()),
+                        UseFilename = true,
+                        UniqueFilename = true,
+                        Overwrite = true
+                    };
+
+                    var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+                    if (uploadResult.StatusCode != HttpStatusCode.OK)
+                    {
+                        return BadRequest("Image upload failed.");
+                    }
+
+                    // Lưu đường dẫn hình ảnh vào ImgUrl
+                    candle.ImgUrl = uploadResult.SecureUrl.ToString();
+                }
                 var data = await _candleService.createCandle(candle);
                 if (data == null)
                 {
@@ -66,7 +119,7 @@ namespace Candle_Web.Controllers
 
         }
 
-        [HttpDelete("delete-candle")]
+        [HttpDelete("delete-candle/{id}")]
         public async Task<IActionResult> DeleteCandleById(int id)
         {
             try

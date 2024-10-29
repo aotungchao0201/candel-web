@@ -1,5 +1,6 @@
 ﻿using Model.Models;
 using Service.Modals;
+using Service.Modals.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace Service.Services.Interface
     {
         Task<List<CandleDTO>> GetAllcandleAscyn();
 
-        Task<CandleDTO> createCandle(CandleDTO candleDTO);  
-        Task<bool> updateCandle(int id,CandleDTO dto);
+        Task<CandleRequest> createCandle(CandleRequest candleDTO);  
+        Task<bool> updateCandle(int id, CandleRequest dto);
         Task<bool> deleteCandle(int id);
         //Task<string> getAccountName(string email);
         //Task<User> getAccountInfoByEmail(string email);

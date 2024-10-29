@@ -16,7 +16,7 @@ namespace Candle_Web.Controllers
             _userService = userService;
         }
 
-        [HttpPut("update")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserDTO user)
         {
             try
@@ -65,7 +65,7 @@ namespace Candle_Web.Controllers
 
         }
 
-        [HttpDelete("delete-user")]
+        [HttpDelete("delete-user/{id}")]
         public async Task<IActionResult> DeleteUserById(int id)
         {
             try

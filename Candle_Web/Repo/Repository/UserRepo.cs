@@ -11,9 +11,9 @@ namespace Repo.Repository
 {
     public class UserRepo : IUserRepo
     {
-        private readonly CandleContext _context;
+        private readonly candleContext _context;
 
-        public UserRepo(CandleContext context)
+        public UserRepo(candleContext context)
         {
             _context = context;
         }

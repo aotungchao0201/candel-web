@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 namespace Model.Models
 {
-    public partial class VnpayTransaction
+    public partial class Payment
     {
-        public int TransactionId { get; set; }
+        public int PaymentId { get; set; }
         public int OrderId { get; set; }
-        public string VnpTransactionId { get; set; } = null!;
+        public string TransactionId { get; set; } = null!;
         public decimal Amount { get; set; }
-        public string? PaymentStatus { get; set; }
+        public string Status { get; set; } = null!;
+        public string PaymentMethod { get; set; } = null!;
         public DateTime? PaymentDate { get; set; }
 
         public virtual Order Order { get; set; } = null!;

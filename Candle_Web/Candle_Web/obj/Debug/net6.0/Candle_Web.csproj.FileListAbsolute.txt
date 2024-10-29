@@ -91,3 +91,8 @@ D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\obj\Debug\net6.0\refi
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\obj\Debug\net6.0\Candle_Web.pdb
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\obj\Debug\net6.0\Candle_Web.genruntimeconfig.cache
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\obj\Debug\net6.0\ref\Candle_Web.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\bin\Debug\net6.0\JWT.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\bin\Debug\net6.0\System.Text.Json.dll
+D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Candle_Web\bin\Debug\net6.0\CloudinaryDotNet.dll

@@ -6,26 +6,29 @@ using Microsoft.Extensions.Configuration;
 
 namespace Model.Models
 {
-    public partial class CandleContext : DbContext
+    public partial class candleContext : DbContext
     {
-        public CandleContext()
+        public candleContext()
         {
         }
 
-        public CandleContext(DbContextOptions<CandleContext> options)
+        public candleContext(DbContextOptions<candleContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<Candle> Candles { get; set; } = null!;
+        public virtual DbSet<CandlesImg> CandlesImgs { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Log> Logs { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
+        public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Review> Reviews { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<VnpayTransaction> VnpayTransactions { get; set; } = null!;
+        public virtual DbSet<Zalopay> Zalopays { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,7 +38,6 @@ namespace Model.Models
                 optionsBuilder.UseSqlServer(GetConnectionString());
             }
         }
-
         private string GetConnectionString()
         {
             IConfiguration config = new ConfigurationBuilder()
@@ -69,8 +71,7 @@ namespace Model.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
 
                 entity.Property(e => e.PostalCode)
                     .HasMaxLength(20)
@@ -81,8 +82,7 @@ namespace Model.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Addresses)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__addresses__user___4D94879B");
+                    .HasConstraintName("FK__addresses__user___29572725");
             });
 
             modelBuilder.Entity<Candle>(entity =>
@@ -91,12 +91,17 @@ namespace Model.Models
 
                 entity.Property(e => e.CandleId).HasColumnName("candle_id");
 
+                entity.Property(e => e.CategoryId).HasColumnName("category_id");
+
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
 
                 entity.Property(e => e.Description).HasColumnName("description");
+
+                entity.Property(e => e.ImgUrl)
+                    .HasColumnType("text")
+                    .HasColumnName("imgURL");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(255)
@@ -106,44 +111,49 @@ namespace Model.Models
                     .HasColumnType("decimal(10, 2)")
                     .HasColumnName("price");
 
-                entity.Property(e => e.StockQuantity)
-                    .HasColumnName("stock_quantity")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.StockQuantity).HasColumnName("stock_quantity");
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("updated_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("updated_at");
 
-                entity.HasMany(d => d.Categories)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Candles)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "CandleCategory",
-                        l => l.HasOne<Category>().WithMany().HasForeignKey("CategoryId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__candle_ca__categ__49C3F6B7"),
-                        r => r.HasOne<Candle>().WithMany().HasForeignKey("CandleId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__candle_ca__candl__48CFD27E"),
-                        j =>
-                        {
-                            j.HasKey("CandleId", "CategoryId").HasName("PK__candle_c__2B591B041DB98774");
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK__candles__categor__30F848ED");
+            });
 
-                            j.ToTable("candle_categories");
+            modelBuilder.Entity<CandlesImg>(entity =>
+            {
+                entity.HasKey(e => e.CandleImgId);
 
-                            j.IndexerProperty<int>("CandleId").HasColumnName("candle_id");
+                entity.ToTable("candles_img");
 
-                            j.IndexerProperty<int>("CategoryId").HasColumnName("category_id");
-                        });
+                entity.Property(e => e.CandleImgId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("candle_img_id");
+
+                entity.Property(e => e.CandleId).HasColumnName("candle_id");
+
+                entity.Property(e => e.ImgUrl)
+                    .HasColumnType("text")
+                    .HasColumnName("imgURL");
+
+                entity.HasOne(d => d.Candle)
+                    .WithMany(p => p.CandlesImgs)
+                    .HasForeignKey(d => d.CandleId)
+                    .HasConstraintName("FK_candles_img_candles");
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.ToTable("categories");
-
-                entity.HasIndex(e => e.Name, "UQ__categori__72E12F1B0256AB7F")
-                    .IsUnique();
+                entity.ToTable("category");
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("name");
             });
 
@@ -157,16 +167,14 @@ namespace Model.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Logs)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__logs__user_id__5165187F");
+                    .HasConstraintName("FK__logs__user_id__33D4B598");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -175,15 +183,27 @@ namespace Model.Models
 
                 entity.Property(e => e.OrderId).HasColumnName("order_id");
 
+                entity.Property(e => e.Address)
+                    .HasMaxLength(250)
+                    .HasColumnName("address");
+
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
+
+                entity.Property(e => e.IsPay)
+                    .HasMaxLength(50)
+                    .HasColumnName("isPay");
+
+                entity.Property(e => e.Note)
+                    .HasMaxLength(250)
+                    .HasColumnName("note");
+
+                entity.Property(e => e.Phone).HasColumnName("phone");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
-                    .HasColumnName("status")
-                    .HasDefaultValueSql("('pending')");
+                    .HasColumnName("status");
 
                 entity.Property(e => e.TotalPrice)
                     .HasColumnType("decimal(10, 2)")
@@ -194,8 +214,7 @@ namespace Model.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__orders__user_id__32E0915F");
+                    .HasConstraintName("FK__orders__user_id__2E1BDC42");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
@@ -218,12 +237,46 @@ namespace Model.Models
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.CandleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__order_ite__candl__36B12243");
+                    .HasConstraintName("FK__order_ite__candl__3A81B327");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__order_ite__order__35BCFE0A");
+                    .HasConstraintName("FK__order_ite__order__3B75D760");
+            });
+
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.ToTable("payments");
+
+                entity.Property(e => e.PaymentId).HasColumnName("payment_id");
+
+                entity.Property(e => e.Amount)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("amount");
+
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
+
+                entity.Property(e => e.PaymentDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("payment_date");
+
+                entity.Property(e => e.PaymentMethod)
+                    .HasMaxLength(50)
+                    .HasColumnName("payment_method");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .HasColumnName("status");
+
+                entity.Property(e => e.TransactionId)
+                    .HasMaxLength(255)
+                    .HasColumnName("transaction_id");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Payments)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK__payments__order___3E52440B");
             });
 
             modelBuilder.Entity<Review>(entity =>
@@ -238,8 +291,7 @@ namespace Model.Models
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
 
                 entity.Property(e => e.Rating).HasColumnName("rating");
 
@@ -248,32 +300,34 @@ namespace Model.Models
                 entity.HasOne(d => d.Candle)
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.CandleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__reviews__candle___4316F928");
+                    .HasConstraintName("FK__reviews__candle___36B12243");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__reviews__user_id__4222D4EF");
+                    .HasConstraintName("FK__reviews__user_id__37A5467C");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("role");
+
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("users");
-
-                entity.HasIndex(e => e.Email, "UQ__users__AB6E616493B607C4")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.Username, "UQ__users__F3DBC572FA668BC4")
-                    .IsUnique();
+                entity.ToTable("user");
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasColumnName("created_at");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(255)
@@ -283,53 +337,67 @@ namespace Model.Models
                     .HasMaxLength(255)
                     .HasColumnName("password_hash");
 
-                entity.Property(e => e.Role)
-                    .HasMaxLength(10)
-                    .HasColumnName("role")
-                    .HasDefaultValueSql("('user')");
+                entity.Property(e => e.RoleId).HasColumnName("role_id");
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(255)
                     .HasColumnName("username");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__user__role_id__267ABA7A");
             });
 
-            modelBuilder.Entity<VnpayTransaction>(entity =>
+            modelBuilder.Entity<Zalopay>(entity =>
             {
-                entity.HasKey(e => e.TransactionId)
-                    .HasName("PK__vnpay_tr__85C600AFAF4F0A85");
+                entity.HasNoKey();
 
-                entity.ToTable("vnpay_transactions");
+                entity.ToTable("zalopay");
 
-                entity.HasIndex(e => e.VnpTransactionId, "UQ__vnpay_tr__EE5D997C0508652C")
-                    .IsUnique();
+                entity.Property(e => e.Amount).HasColumnName("amount");
 
-                entity.Property(e => e.TransactionId).HasColumnName("transaction_id");
+                entity.Property(e => e.Appid).HasColumnName("appid");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnType("decimal(10, 2)")
-                    .HasColumnName("amount");
+                entity.Property(e => e.Apptime).HasColumnName("apptime");
+
+                entity.Property(e => e.Apptransid)
+                    .HasMaxLength(255)
+                    .HasColumnName("apptransid");
+
+                entity.Property(e => e.Appuser)
+                    .HasMaxLength(255)
+                    .HasColumnName("appuser");
+
+                entity.Property(e => e.Bankcode)
+                    .HasMaxLength(255)
+                    .HasColumnName("bankcode");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(255)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.Embeddata).HasColumnName("embeddata");
+
+                entity.Property(e => e.Mac)
+                    .HasMaxLength(255)
+                    .HasColumnName("mac");
 
                 entity.Property(e => e.OrderId).HasColumnName("order_id");
 
-                entity.Property(e => e.PaymentDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("payment_date")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.PaymentStatus)
-                    .HasMaxLength(10)
-                    .HasColumnName("payment_status")
-                    .HasDefaultValueSql("('pending')");
-
-                entity.Property(e => e.VnpTransactionId)
+                entity.Property(e => e.Paymentcode)
                     .HasMaxLength(255)
-                    .HasColumnName("vnp_transaction_id");
+                    .HasColumnName("paymentcode");
+
+                entity.Property(e => e.Returnurl)
+                    .HasMaxLength(255)
+                    .HasColumnName("returnurl");
 
                 entity.HasOne(d => d.Order)
-                    .WithMany(p => p.VnpayTransactions)
+                    .WithMany()
                     .HasForeignKey(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__vnpay_tra__order__3D5E1FD2");
+                    .HasConstraintName("FK_zalopay_orders1");
             });
 
             OnModelCreatingPartial(modelBuilder);
