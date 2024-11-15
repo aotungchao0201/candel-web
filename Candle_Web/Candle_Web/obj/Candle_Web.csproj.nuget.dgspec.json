@@ -1,233 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj": {}
+    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj": {}
   },
   "projects": {
-    "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\Model.csproj": {
+    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\Model.csproj",
-        "projectName": "Model",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.Data.SqlClient": {
-              "target": "Package",
-              "version": "[5.2.2, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.27, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.27, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.27, )"
-            },
-            "Microsoft.Extensions.Configuration": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
-        "projectName": "Repo",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\Model.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Model\\Model.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[12.0.1, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj",
-        "projectName": "Service",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Repo\\Repo.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj",
+        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj",
         "projectName": "Candle_Web",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Candle_Web\\obj\\",
+        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Candle_Web\\Candle_Web.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Candle_Web\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -235,17 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\Candle Web week 2\\candel-web\\Candle_Web\\Service\\Service.csproj"
-              },
-              "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj"
+              "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\Service.csproj": {
+                "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\Service.csproj"
               }
             }
           }
@@ -254,6 +43,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -300,21 +94,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\Model.csproj": {
+    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\Model.csproj",
+        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\obj\\",
+        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -322,6 +120,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -334,6 +133,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -385,21 +189,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
+    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
+        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
         "projectName": "Repo",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\obj\\",
+        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -407,14 +215,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\Model.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Model\\Model.csproj"
+              "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj": {
+                "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj"
               }
             }
           }
@@ -423,6 +232,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -454,21 +268,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj": {
+    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj",
+        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Service\\obj\\",
+        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -476,14 +294,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
-                "projectPath": "D:\\FPT\\HK8\\EXE_201\\week 3\\candel-web\\Candle_Web\\Repo\\Repo.csproj"
+              "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
+                "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj"
               }
             }
           }
@@ -492,6 +311,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -523,7 +347,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -25,16 +25,9 @@ builder.Services.AddCloudinary();
 //Add Mapper
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactApp",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:3000")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
-});
+builder.Services.AddCors(option =>
+    option.AddPolicy("CORS", builder =>
+        builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((host) => true)));
 
 //add JWT
 builder.Services.AddSingleton<TokenService>();
@@ -98,7 +91,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 //                                                                                    |
 //----------------------------ADD-----SCOPE--------------------------------------------
 
-
+var connectionString = builder.Configuration.GetConnectionString("Candle");
+Console.WriteLine($"MSSQL_Connection Program: {connectionString}");
 builder.Services.AddDbContext<candleContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Candle"));
@@ -115,11 +109,13 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("AllowReactApp");
 
