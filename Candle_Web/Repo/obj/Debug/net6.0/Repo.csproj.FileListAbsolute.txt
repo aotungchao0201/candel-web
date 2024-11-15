@@ -30,3 +30,19 @@ D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.dll
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Repo\obj\Debug\net6.0\refint\Repo.dll
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.pdb
 D:\FPT\HK8\EXE_201\week 3\candel-web\Candle_Web\Repo\obj\Debug\net6.0\ref\Repo.dll
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\bin\Debug\net6.0\Repo.deps.json
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\bin\Debug\net6.0\Repo.dll
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\bin\Debug\net6.0\Repo.pdb
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\bin\Debug\net6.0\Model.dll
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\bin\Debug\net6.0\Model.pdb
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.csproj.AssemblyReference.cache
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.AssemblyInfoInputs.cache
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.AssemblyInfo.cs
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.csproj.CoreCompileInputs.cache
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.sourcelink.json
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.csproj.Up2Date
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.dll
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\refint\Repo.dll
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\Repo.pdb
+D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\obj\Debug\net6.0\ref\Repo.dll
