@@ -9,9 +9,16 @@ using Service.Services.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Net.payOS;
+
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+PayOS payOS = new PayOS(configuration["Environment:PAYOS_CLIENT_ID"] ?? throw new Exception("Cannot find environment"),
+                    configuration["Environment:PAYOS_API_KEY"] ?? throw new Exception("Cannot find environment"),
+                    configuration["Environment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find environment"));
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSingleton(payOS);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -66,7 +73,7 @@ builder.Services.AddScoped<ICandleRepo, CandleRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IReViewRepo, ReviewRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
-
+builder.Services.AddScoped<ICateRepo, CateRepo>();
 
 
 
@@ -76,7 +83,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IAuthenService, AuthenService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-
+builder.Services.AddScoped<ICateService, CateService>();
 
 
 
