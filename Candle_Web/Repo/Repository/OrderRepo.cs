@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Model.Models;
 using Repo.Repository.Interface;
 using System;
@@ -33,7 +33,7 @@ namespace Repo.Repository
 
         public async Task<List<Order>> GetALL()
         {
-            var data = await _context.Orders.ToListAsync();
+            var data = await _context.Orders.Include(o=>o.User).ToListAsync();
             return data;
         }
 
@@ -62,6 +62,7 @@ namespace Repo.Repository
             await _context.SaveChangesAsync();
             return data;
         }
+
         public async Task<List<Order>> GetByUserId(int id)
         {
             var data = await _context.Orders.Include(o=>o.User).Where(x => x.UserId.Equals(id)).ToListAsync();
