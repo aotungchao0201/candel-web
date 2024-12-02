@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Modals;
 using Service.Services.Interface;
@@ -89,6 +89,24 @@ namespace Candle_Web.Controllers
             try
             {
                 var result = await _userService.GetAllUserAscyn();
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("get-by-id/{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            try
+            {
+                var result = await _userService.getAccountInfoById(id);
                 if (result == null)
                 {
                     return NotFound();
