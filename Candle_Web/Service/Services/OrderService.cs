@@ -1,10 +1,12 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Model.Models;
 using Repo.Repository;
 using Repo.Repository.Interface;
 using Service.Enum;
 using Service.Modals;
+using Service.Modals.Request;
+using Service.Modals.Respond;
 using Service.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -72,65 +74,27 @@ namespace Service.Services
 
         public async Task<OrderDTO> createOrder(OrderDTO order)
         {
-            var existingOrder = await _context.Orders
-        .Include(o => o.OrderItems)
-        .FirstOrDefaultAsync(o => o.UserId == order.UserId && o.Status == OrderStatusEnum.Pending.ToString());
 
-            if (existingOrder != null)
+
+            try
             {
+                order.Status = OrderStatusEnum.Pending.ToString();
+                order.IsPay = OrderStatusEnum.NotPay.ToString();
 
-                existingOrder.TotalPrice += order.TotalPrice; // Update total price based on the provided DTO
+                var map = _mapper.Map<Order>(order);
+                    var createCandle = await _orderRepo.Create(map);
+                    var resutl = _mapper.Map<OrderDTO>(createCandle);
+                    return resutl;
+                
 
-                // Update order items
-                foreach (var orderItemDto in order.OrderItems)
-                {
-                    var existingOrderItem = existingOrder.OrderItems
-                        .FirstOrDefault(oi => oi.CandleId == orderItemDto.CandleId);
-
-                    if (existingOrderItem != null)
-                    {
-                        // Increment the quantity if the item already exists
-                        existingOrderItem.Quantity += orderItemDto.Quantity;
-
-                        //existingOrderItem.Price = orderItemDto.Price; // Update price ???
-                    }
-                    else
-                    {
-                        // Add new order item
-                        var newItem = _mapper.Map<OrderItem>(orderItemDto);
-                        newItem.OrderId = existingOrder.OrderId; // Set the OrderId for the new item
-                        existingOrder.OrderItems.Add(newItem);
-                    }
                 }
-                existingOrder.TotalPrice = existingOrder.OrderItems.Sum(o => o.Quantity * o.Price);
-
-                // Save changes to the existing order
-                await _context.SaveChangesAsync();
-                return _mapper.Map<OrderDTO>(existingOrder);
-            }
-            else
-            {
-                // If no existing order found, create a new order
-                var newOrder = _mapper.Map<Order>(order);
-                newOrder.CreatedAt = DateTime.Now; // Set created date
-                newOrder.Status = OrderStatusEnum.Pending.ToString(); // Set the status for the new order
-
-                newOrder.TotalPrice = order.OrderItems.Sum(item => item.Quantity * item.Price);
-
-                foreach (var orderItemDto in order.OrderItems)
+                catch (Exception ex)
                 {
-                    var newItem = _mapper.Map<OrderItem>(orderItemDto);
-                    newItem.OrderId = newOrder.OrderId; // Set the OrderId for the new item
-                    newOrder.OrderItems.Add(newItem);
+                    throw new Exception(ex.Message);
                 }
-
-                _context.Orders.Add(newOrder);
-                await _context.SaveChangesAsync();
-
-                // Map and return the newly created order as OrderDTO
-                return _mapper.Map<OrderDTO>(newOrder);
             }
-        }
+
+        
         public async Task<bool> delete(int id)
         {
             try
@@ -150,14 +114,16 @@ namespace Service.Services
             }
         }
 
-        public async Task<bool> UpdateStatus_Success_OrderService(int orderId, OrderDTO order)
+        public async Task<bool> UpdateStatus_Success_OrderService(int orderId, OrderStatusDTO order)
         {
             try
             {
                 var data = await _orderRepo.GetByOrderId(orderId);
                 if (data != null)
                 {
-                    data.Status = OrderStatusEnum.Successful.ToString();
+                    order.Status = OrderStatusEnum.Successful.ToString();
+                    order.IsPay = OrderStatusEnum.Paid.ToString();
+
                     _mapper.Map(order, data);
                     await _orderRepo.Update(data);
                     return true;
@@ -173,14 +139,16 @@ namespace Service.Services
             }
         }
 
-        public async Task<bool> UpdateStatus_Canceled_OrderService(int orderId, OrderDTO order)
+        public async Task<bool> UpdateStatus_Canceled_OrderService(int orderId, OrderStatusDTO order)
         {
             try
             {
                 var data = await _orderRepo.GetByOrderId(orderId);
                 if (data != null)
                 {
-                    data.Status = OrderStatusEnum.Canceled.ToString();
+                    order.Status = OrderStatusEnum.Canceled.ToString();
+                    order.IsPay = OrderStatusEnum.NotPay.ToString();
+
                     _mapper.Map(order, data);
                     await _orderRepo.Update(data);
                     return true;
@@ -196,12 +164,46 @@ namespace Service.Services
             }
         }
 
-        public Task<List<Order>> GetAllOrderOfUser()
+        public async Task<List<OrderRequestDTO>> GetAllOrderOfUser()
         {
             try
             {
-                var data = _orderRepo.GetALL();
-                return data;
+
+                var data = await _orderRepo.GetALL();
+
+                if (!data.Any())
+                {
+                    return null;
+                }
+
+                var map = _mapper.Map<List<OrderRequestDTO>>(data);
+
+                return map;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public async Task<List<OrderRequestDTO>> GetOrderByUserId(int id)
+        {
+            try
+            {
+
+                var data = await _orderRepo.GetByUserId(id);
+
+                if (!data.Any())
+                {
+                    return null;
+                }
+
+                var map = _mapper.Map<List<OrderRequestDTO>>(data);
+
+                return map;
+
             }
             catch (Exception ex)
             {
@@ -216,6 +218,25 @@ namespace Service.Services
             {
                 var data = _orderRepo.GetOrderItemById(id);
                 return data;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<OrderRespondDTO> GetOrderByIdOrder(int id)
+        {
+            try
+            {
+
+                var data = await _orderRepo.GetByOrderId(id);
+
+
+                var map = _mapper.Map<OrderRespondDTO>(data);
+
+                return map;
+
             }
             catch (Exception ex)
             {
