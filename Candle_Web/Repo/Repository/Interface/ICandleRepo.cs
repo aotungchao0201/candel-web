@@ -1,20 +1,69 @@
-﻿using Model.Models;
+using Microsoft.EntityFrameworkCore;
+using Model.Models;
+using Repo.Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repo.Repository.Interface
+namespace Repo.Repository
 {
-    public interface ICandleRepo
+    public class CandleRepo : ICandleRepo
     {
-        public Task<List<Candle>> GetAllCandle();
-        public Task<Candle> CreateCandle(Candle candle);
-        public Task<Candle> UpdateCandle(Candle candle);
-        public Task<bool> DeleteCandle(Candle candle);
+        private readonly candleContext _context;
 
-        public Task<Candle> GetCandleById(int id);
-        public Task<Candle> GetCandleByName(string? candle);
+        public CandleRepo(candleContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<Candle> CreateCandle(Candle candle)
+        {
+            _context.Add(candle);
+            await _context.SaveChangesAsync();
+            return candle;
+        }
+
+        public async Task<bool> DeleteCandle(Candle candle)
+        {
+            _context.Remove(candle);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<List<Candle>> GetAllCandle()
+        {
+            var data = await _context.Candles.
+                Include(o=>o.Category).ToListAsync();
+            
+            return data;
+        }
+
+        public async Task<List<Candle>> GetByCategoryId(int id)
+        {
+            var data = await _context.Candles.Include(o => o.Category).Where(x => x.CategoryId.Equals(id)).ToListAsync();
+            return data;
+        }
+
+        public async Task<Candle> GetCandleById(int id)
+        {
+            var data = await _context.Candles.Include(o => o.Category).SingleOrDefaultAsync(x=> x.CandleId.Equals(id));
+            return data;
+        }
+
+        public async Task<Candle> GetCandleByName(string? candle)
+        {
+            var data = await _context.Candles.SingleOrDefaultAsync(x => x.Name.Equals(candle));
+            return data;
+        }
+
+        public async Task<Candle> UpdateCandle(Candle candle)
+        {
+            _context.Update(candle);
+            await _context.SaveChangesAsync();
+            return candle;
+        }
     }
 }
