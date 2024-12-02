@@ -155,5 +155,41 @@ namespace Candle_Web.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("get-by-id/{id}")]
+        public async Task<IActionResult> GetCandleById(int id)
+        {
+            try
+            {
+                var result = await _candleService.GetByid(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("get-by-category-id/{id}")]
+        public async Task<IActionResult> GetCandleByCategoryId(int id)
+        {
+            try
+            {
+                var result = await _candleService.GetAllCandleByCategory(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
