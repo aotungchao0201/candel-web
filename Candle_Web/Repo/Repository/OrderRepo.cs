@@ -62,7 +62,7 @@ namespace Repo.Repository
             await _context.SaveChangesAsync();
             return data;
         }
-         public async Task<List<Order>> GetByUserId(int id)
+        public async Task<List<Order>> GetByUserId(int id)
         {
             var data = await _context.Orders.Include(o=>o.User).Where(x => x.UserId.Equals(id)).ToListAsync();
             return data;
