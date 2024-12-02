@@ -1,4 +1,4 @@
-﻿using Model.Models;
+using Model.Models;
 using Service.Modals;
 using Service.Modals.Request;
 using System;
@@ -16,9 +16,10 @@ namespace Service.Services.Interface
         Task<CandleRequest> createCandle(CandleRequest candleDTO);  
         Task<bool> updateCandle(int id, CandleRequest dto);
         Task<bool> deleteCandle(int id);
+        Task<List<CandleDTO>> GetAllCandleByCategory(int id);
         //Task<string> getAccountName(string email);
         //Task<User> getAccountInfoByEmail(string email);
-        //Task<short> getAccountIdByAccountName(string name);
+        Task<CandleDTO> GetByid(int name);
         //Task<User> getAccountInfoById(int id);
 
     }
