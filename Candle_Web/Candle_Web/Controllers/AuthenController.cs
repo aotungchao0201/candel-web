@@ -33,7 +33,7 @@ namespace Candle_Web.Controllers
                 return NotFound("User not found");
             }           
             // Tạo token
-            var token = _tokenService.GenerateToken(user.Username, user.RoleId);
+            var token = _tokenService.GenerateToken(user.Username, user.RoleId, user.UserId);
             return Ok(new
             {
                 Success = true,
