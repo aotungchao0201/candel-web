@@ -1,9 +1,8 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Model.Models;
 using Repo.Repository;
 using Repo.Repository.Interface;
 using Service.Modals;
-using Service.Modals.Request;
 using Service.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,24 +12,24 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class ReviewService : IReviewService
+    public class UserService : IUserService
     {
-        private readonly IReViewRepo _review;
+        private readonly IUserRepo _userRepo;
         private readonly IMapper _mapper;
 
-        public ReviewService(IReViewRepo review, IMapper mapper)
+        public UserService(IUserRepo userRepo, IMapper mapper)
         {
-            _review = review;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
-        public async Task<ReviewRequest> Create(ReviewRequest candleDTO)
+        public async Task<UserDTO> createUser(UserDTO user)
         {
             try
             {
-                var map = _mapper.Map<Review>(candleDTO);
-                var userCreate = await _review.CreateReview(map);
-                var resutl = _mapper.Map<ReviewRequest>(userCreate);
+                var map = _mapper.Map<User>(user);
+                var userCreate = await _userRepo.CreateUser(map);
+                var resutl = _mapper.Map<UserDTO>(userCreate);
                 return resutl;
             }
             catch (Exception ex)
@@ -39,17 +38,17 @@ namespace Service.Services
             }
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> deleteUser(int id)
         {
             try
             {
-                var user = await _review.GetReviewById(id);
+                var user = await _userRepo.GetUserById(id);
                 if (user == null)
                 {
-                    throw new Exception($"Review {id} does not exist");
+                    throw new Exception($"User {id} does not exist");
                 }
 
-                await _review.DeleteReview(user);
+                await _userRepo.DeleteUser(user);
                 return true;
             }
             catch (Exception ex)
@@ -58,13 +57,31 @@ namespace Service.Services
             }
         }
 
-        public async Task<List<ReviewDTO>> GetAll()
+        public async Task<User> getAccountInfoByAccountName(string name)
+        {
+            var data = await _userRepo.GetUserByName(name);
+            return data;
+        }
+
+        public async Task<User> getAccountInfoByEmail(string email)
+        {
+            var data = await _userRepo.GetUserByGmail(email);
+            return data;
+        }
+
+        public async Task<User> getAccountInfoById(int id)
+        {
+            var data = await _userRepo.GetUserById(id);
+            return data;
+        }
+
+        public async Task<List<UserDTO>> GetAllUserAscyn()
         {
             try
             {
 
-                var data = await _review.GetAllReview();
-                var map = _mapper.Map<List<ReviewDTO>>(data);
+                var data = await _userRepo.GetAllUser();
+                var map = _mapper.Map<List<UserDTO>>(data);
                 return map;
 
             }
@@ -74,9 +91,28 @@ namespace Service.Services
             }
         }
 
-        public Task<bool> Update(int id, ReviewRequest dto)
+        public async Task<bool> updateUser(int id, UserDTO user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userData = await _userRepo.GetUserById(id);
+                if (userData == null)
+                {
+                    return false;
+                }
+
+                _mapper.Map(user, userData);
+                await _userRepo.UpdateUser(userData);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Fail to update user info {ex.Message}");
+                return false;
+            }
         }
+
+       
     }
 }
