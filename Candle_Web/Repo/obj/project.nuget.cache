@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Z0UTDXSGPA=",
+  "dgSpecHash": "YAZnKbADhto=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
+  "projectFilePath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

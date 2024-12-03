@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Repo
-build_property.ProjectDir = C:\Users\Admin\Downloads\candel-web (3)\candel-web\Candle_Web\Repo\
+build_property.ProjectDir = D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Repo\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
