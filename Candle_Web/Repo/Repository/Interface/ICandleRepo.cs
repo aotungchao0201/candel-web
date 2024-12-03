@@ -15,6 +15,8 @@ namespace Repo.Repository.Interface
         public Task<bool> DeleteCandle(Candle candle);
 
         public Task<Candle> GetCandleById(int id);
+        public Task<List<Candle>> GetByCategoryId(int id);
+
         public Task<Candle> GetCandleByName(string? candle);
     }
 }

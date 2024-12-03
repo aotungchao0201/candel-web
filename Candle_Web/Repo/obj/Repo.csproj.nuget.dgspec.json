@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {}
+    "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj": {
+    "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -99,14 +99,14 @@
         }
       }
     },
-    "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
+    "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\Repo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
         "projectName": "Repo",
-        "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
+        "projectPath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\Repo.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Repo\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Repo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -128,8 +128,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj": {
-                "projectPath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj"
+              "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj"
               }
             }
           }

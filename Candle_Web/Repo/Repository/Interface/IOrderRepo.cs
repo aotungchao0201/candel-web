@@ -16,6 +16,7 @@ namespace Repo.Repository.Interface
 
         public Task<OrderItem> GetOrderItemById(int id);
         public Task<Order> GetByOrderId(int id);
+        public Task<List<Order>> GetByUserId(int id);
 
         public Task<Order> GetByName(string? order);
 

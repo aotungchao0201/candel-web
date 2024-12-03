@@ -101,5 +101,23 @@ namespace Candle_Web.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("get-by-id/{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            try
+            {
+                var result = await _userService.getAccountInfoById(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

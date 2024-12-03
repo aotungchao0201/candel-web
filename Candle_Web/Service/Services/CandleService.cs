@@ -85,6 +85,45 @@ namespace Service.Services
             }
         }
 
+        public async Task<List<CandleDTO>> GetAllCandleByCategory(int id )
+        {
+            try
+            {
+
+                var data = await _candleRepo.GetByCategoryId(id);
+
+                
+
+                var map = _mapper.Map<List<CandleDTO>>(data);
+
+                return map;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<CandleDTO> GetByid(int id )
+        {
+            try
+            {
+
+                var data = await _candleRepo.GetCandleById(id);
+
+               
+                var map = _mapper.Map<CandleDTO>(data);
+
+                return map;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<bool> updateCandle(int id, CandleRequest dto)
         {
             try

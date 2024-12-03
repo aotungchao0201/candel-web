@@ -41,9 +41,15 @@ namespace Repo.Repository
             return data;
         }
 
+        public async Task<List<Candle>> GetByCategoryId(int id)
+        {
+            var data = await _context.Candles.Include(o => o.Category).Where(x => x.CategoryId.Equals(id)).ToListAsync();
+            return data;
+        }
+
         public async Task<Candle> GetCandleById(int id)
         {
-            var data = await _context.Candles.SingleOrDefaultAsync(x=> x.CandleId.Equals(id));
+            var data = await _context.Candles.Include(o => o.Category).SingleOrDefaultAsync(x=> x.CandleId.Equals(id));
             return data;
         }
 

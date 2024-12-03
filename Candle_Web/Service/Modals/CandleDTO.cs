@@ -8,6 +8,8 @@ namespace Service.Modals
 {
     public class CandleDTO
     {
+        public int CandleId { get; set; }
+
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public decimal Price { get; set; }

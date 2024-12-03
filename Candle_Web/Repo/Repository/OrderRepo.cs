@@ -33,7 +33,7 @@ namespace Repo.Repository
 
         public async Task<List<Order>> GetALL()
         {
-            var data = await _context.Orders.ToListAsync();
+            var data = await _context.Orders.Include(o=>o.User).ToListAsync();
             return data;
         }
 
@@ -44,7 +44,10 @@ namespace Repo.Repository
         }
         public async Task<Order> GetByOrderId(int id)
         {
-            var data = await _context.Orders.SingleOrDefaultAsync(x => x.OrderId.Equals(id));
+            var data = await _context.Orders.Include(o => o.OrderItems)
+                .ThenInclude(o=>o.Candle)
+                .Include(o=>o.User)
+                .SingleOrDefaultAsync(x => x.OrderId.Equals(id));
             return data;
         }
         public async Task<Order> GetByName(string? name)
@@ -57,6 +60,12 @@ namespace Repo.Repository
         {
             _context.Update(data);
             await _context.SaveChangesAsync();
+            return data;
+        }
+
+        public async Task<List<Order>> GetByUserId(int id)
+        {
+            var data = await _context.Orders.Include(o=>o.User).Where(x => x.UserId.Equals(id)).ToListAsync();
             return data;
         }
     }

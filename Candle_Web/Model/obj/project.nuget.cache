@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rw9RXio4IOg=",
+  "dgSpecHash": "Flt6MVekgMX9BBk4T6thgtlfVi46vjvhqkcLiKfYiUcBsreoCmX/t7/RT50qHCFnSqcXVJtS452EDfot9yzZhQ==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Cuong_Deploy\\candel-web\\Candle_Web\\Model\\Model.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Downloads\\candel-web (3)\\candel-web\\Candle_Web\\Model\\Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

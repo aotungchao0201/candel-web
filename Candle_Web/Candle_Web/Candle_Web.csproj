@@ -11,11 +11,11 @@
     <PackageReference Include="JWT" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="payOS" Version="1.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Candle Web week 2\candel-web\Candle_Web\Service\Service.csproj" />
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
