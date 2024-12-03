@@ -6,6 +6,8 @@ namespace Service.Enum
     {
         Pending,
         Canceled,
-        Successful
+        Successful,
+        Paid,
+        NotPay
     }
 }

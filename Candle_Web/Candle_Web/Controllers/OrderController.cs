@@ -1,4 +1,4 @@
-using Azure;
+﻿using Azure;
 using Candle_Web.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

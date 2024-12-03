@@ -1,7 +1,7 @@
 namespace Candle_Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Net.payOS.Types;
 using Net.payOS;
+using Net.payOS.Types;
 public class CheckoutController : Controller
 {
     private readonly PayOS _payOS;
@@ -56,7 +56,7 @@ public class CheckoutController : Controller
 
             CreatePaymentResult createPayment = await _payOS.createPaymentLink(paymentData);
 
-            return Redirect(createPayment.checkoutUrl);
+            return Ok(createPayment.checkoutUrl);
         }
         catch (Exception exception)
         {

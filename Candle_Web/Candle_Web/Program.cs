@@ -1,15 +1,16 @@
 using Candle_Web;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Model.Models;
+using Net.payOS;
 using Repo.Repository;
 using Repo.Repository.Interface;
 using Service.Mapper;
 using Service.Services;
 using Service.Services.Interface;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Net.payOS;
+
 
 IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
@@ -18,7 +19,11 @@ PayOS payOS = new PayOS(configuration["Environment:PAYOS_CLIENT_ID"] ?? throw ne
                     configuration["Environment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find environment"));
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 builder.Services.AddSingleton(payOS);
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -32,9 +37,16 @@ builder.Services.AddCloudinary();
 //Add Mapper
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
-builder.Services.AddCors(option =>
-    option.AddPolicy("CORS", builder =>
-        builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((host) => true)));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000", "http://localhost:5173") // Add your frontend URL here
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+}); ;
 
 //add JWT
 builder.Services.AddSingleton<TokenService>();
@@ -64,16 +76,13 @@ builder.Services.AddAuthentication(options =>
 //                                                                                    |
 //                                                                                    |
 //                                                                                    |
-//                                                                                    |
-//                                                                                    |
-
-
 //Add Repo
 builder.Services.AddScoped<ICandleRepo, CandleRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IReViewRepo, ReviewRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddScoped<ICateRepo, CateRepo>();
+
 
 
 
@@ -85,9 +94,6 @@ builder.Services.AddScoped<IAuthenService, AuthenService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICateService, CateService>();
 
-
-
-
 //                                                                                    |
 //                                                                                    |
 //                                                                                    |
@@ -98,8 +104,7 @@ builder.Services.AddScoped<ICateService, CateService>();
 //                                                                                    |
 //----------------------------ADD-----SCOPE--------------------------------------------
 
-var connectionString = builder.Configuration.GetConnectionString("Candle");
-Console.WriteLine($"MSSQL_Connection Program: {connectionString}");
+
 builder.Services.AddDbContext<candleContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Candle"));
@@ -116,17 +121,19 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// }
+/*if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}*/
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("CORS");
-
 app.UseHttpsRedirection();
+
+app.UseCors("AllowReactApp"); // Ensure this is before UseAuthorization
+
 
 app.UseAuthorization();
 

@@ -9,11 +9,23 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Candle_Web
 build_property.RootNamespace = Candle_Web
-build_property.ProjectDir = D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Candle_Web\
+build_property.ProjectDir = C:\Users\Admin\Downloads\candel-web (3)\candel-web\Candle_Web\Candle_Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Projects\Cuong_Deploy\candel-web\Candle_Web\Candle_Web
+build_property.MSBuildProjectDirectory = C:\Users\Admin\Downloads\candel-web (3)\candel-web\Candle_Web\Candle_Web
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Admin/Downloads/candel-web (3)/candel-web/Candle_Web/Candle_Web/Views/Checkout/cancel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcY2FuY2VsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/candel-web (3)/candel-web/Candle_Web/Candle_Web/Views/Checkout/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/candel-web (3)/candel-web/Candle_Web/Candle_Web/Views/Checkout/success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcc3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

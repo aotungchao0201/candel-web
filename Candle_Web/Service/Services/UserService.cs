@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Model.Models;
 using Repo.Repository;
 using Repo.Repository.Interface;
@@ -6,6 +6,8 @@ using Service.Modals;
 using Service.Services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Services
@@ -21,150 +23,96 @@ namespace Service.Services
             _mapper = mapper;
         }
 
-        public async Task<UserDTO> CreateUser(UserDTO user)
+        public async Task<UserDTO> createUser(UserDTO user)
         {
             try
             {
-                // Map UserDTO to User entity
-                var userEntity = _mapper.Map<User>(user);
-
-                // Call repository to create user
-                var userCreate = await _userRepo.CreateUser(userEntity);
-
-                // Map created User entity back to UserDTO
-                var result = _mapper.Map<UserDTO>(userCreate);
-
-                return result;
+                var map = _mapper.Map<User>(user);
+                var userCreate = await _userRepo.CreateUser(map);
+                var resutl = _mapper.Map<UserDTO>(userCreate);
+                return resutl;
             }
             catch (Exception ex)
             {
-                // Log the exception and rethrow as a custom exception
-                throw new UserServiceException("An error occurred while creating user.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> deleteUser(int id)
         {
             try
             {
-                // Get user by ID
                 var user = await _userRepo.GetUserById(id);
                 if (user == null)
                 {
-                    throw new UserServiceException($"User with ID {id} does not exist.");
+                    throw new Exception($"User {id} does not exist");
                 }
 
-                // Delete user from repository
                 await _userRepo.DeleteUser(user);
                 return true;
             }
             catch (Exception ex)
             {
-                // Log the exception and rethrow as a custom exception
-                throw new UserServiceException("An error occurred while deleting user.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
-        public async Task<User> GetAccountInfoByAccountName(string name)
+        public async Task<User> getAccountInfoByAccountName(string name)
+        {
+            var data = await _userRepo.GetUserByName(name);
+            return data;
+        }
+
+        public async Task<User> getAccountInfoByEmail(string email)
+        {
+            var data = await _userRepo.GetUserByGmail(email);
+            return data;
+        }
+
+        public async Task<User> getAccountInfoById(int id)
+        {
+            var data = await _userRepo.GetUserById(id);
+            return data;
+        }
+
+        public async Task<List<UserDTO>> GetAllUserAscyn()
         {
             try
             {
-                var data = await _userRepo.GetUserByName(name);
-                if (data == null)
-                {
-                    throw new UserServiceException($"User with name {name} not found.");
-                }
-                return data;
+
+                var data = await _userRepo.GetAllUser();
+                var map = _mapper.Map<List<UserDTO>>(data);
+                return map;
+
             }
             catch (Exception ex)
             {
-                throw new UserServiceException("An error occurred while fetching account by name.", ex);
+                throw new Exception(ex.Message);
             }
         }
 
-        public async Task<User> GetAccountInfoByEmail(string email)
+        public async Task<bool> updateUser(int id, UserDTO user)
         {
             try
             {
-                var data = await _userRepo.GetUserByGmail(email);
-                if (data == null)
-                {
-                    throw new UserServiceException($"User with email {email} not found.");
-                }
-                return data;
-            }
-            catch (Exception ex)
-            {
-                throw new UserServiceException("An error occurred while fetching account by email.", ex);
-            }
-        }
-
-        public async Task<User> GetAccountInfoById(int id)
-        {
-            try
-            {
-                var data = await _userRepo.GetUserById(id);
-                if (data == null)
-                {
-                    throw new UserServiceException($"User with ID {id} not found.");
-                }
-                return data;
-            }
-            catch (Exception ex)
-            {
-                throw new UserServiceException("An error occurred while fetching account by ID.", ex);
-            }
-        }
-
-        public async Task<List<UserDTO>> GetAllUsersAsync()
-        {
-            try
-            {
-                var users = await _userRepo.GetAllUser();
-                var userDTOs = _mapper.Map<List<UserDTO>>(users);
-                return userDTOs;
-            }
-            catch (Exception ex)
-            {
-                throw new UserServiceException("An error occurred while fetching all users.", ex);
-            }
-        }
-
-        public async Task<bool> UpdateUser(int id, UserDTO user)
-        {
-            try
-            {
-                // Get existing user by ID
                 var userData = await _userRepo.GetUserById(id);
                 if (userData == null)
                 {
-                    throw new UserServiceException($"User with ID {id} not found.");
+                    return false;
                 }
 
-                // Map DTO to user entity
                 _mapper.Map(user, userData);
-
-                // Update user in repository
                 await _userRepo.UpdateUser(userData);
                 return true;
             }
             catch (Exception ex)
             {
-                // Log the exception and rethrow as a custom exception
-                throw new UserServiceException("An error occurred while updating user.", ex);
+                // Log the exception
+                Console.WriteLine($"Fail to update user info {ex.Message}");
+                return false;
             }
         }
-    }
 
-    // Custom exception to handle errors in UserService
-    public class UserServiceException : Exception
-    {
-        public UserServiceException(string message) : base(message)
-        {
-        }
-
-        public UserServiceException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+       
     }
 }

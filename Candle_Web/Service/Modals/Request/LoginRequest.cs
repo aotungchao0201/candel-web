@@ -8,6 +8,8 @@ namespace Service.Modals.Request
 {
     public class LoginRequest
     {
+        public int UserId { get; set; }
+
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
