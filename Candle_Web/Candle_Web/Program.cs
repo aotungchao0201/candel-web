@@ -37,16 +37,9 @@ builder.Services.AddCloudinary();
 //Add Mapper
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactApp",
-        builder =>
-        {
-            builder.WithOrigins("http://localhost:3000", "http://localhost:5173") // Add your frontend URL here
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
-}); ;
+builder.Services.AddCors(option =>
+    option.AddPolicy("CORS", builder =>
+        builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((host) => true)));
 
 //add JWT
 builder.Services.AddSingleton<TokenService>();
@@ -132,7 +125,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowReactApp"); // Ensure this is before UseAuthorization
+app.UseCors("CORS");
 
 
 app.UseAuthorization();
